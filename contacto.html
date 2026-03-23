@@ -172,7 +172,7 @@
           ¡Mensaje enviado! Te responderemos en menos de 24 horas.
         </div>
 
-        <form id="contact-form" action="https://formspree.io/f/XXXXXXXX" method="POST" class="space-y-6" novalidate>
+        <form id="contact-form" action="/api/contacto" method="POST" class="space-y-6" novalidate>
 
           <!-- Nombre y teléfono -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -434,27 +434,27 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Validación básica
-    const nombre = document.getElementById('nombre').value.trim();
-    const telefono = document.getElementById('telefono').value.trim();
-    const servicio = document.getElementById('servicio').value;
-    const rgpd = document.getElementById('rgpd').checked;
+    const nombre    = document.getElementById('nombre').value.trim();
+    const telefono  = document.getElementById('telefono').value.trim();
+    const email     = document.getElementById('email').value.trim();
+    const servicio  = document.getElementById('servicio').value;
+    const localidad = document.getElementById('localidad').value.trim();
+    const mensaje   = document.getElementById('mensaje').value.trim();
+    const rgpd      = document.getElementById('rgpd').checked;
 
     if (!nombre || !telefono || !servicio || !rgpd) {
       alert('Por favor, rellena todos los campos obligatorios y acepta la política de privacidad.');
       return;
     }
 
-    // Estado cargando
     submitBtn.disabled = true;
     btnText.textContent = 'Enviando...';
 
     try {
-      const data = new FormData(form);
-      const response = await fetch(form.action, {
+      const response = await fetch('/api/contacto', {
         method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, telefono, email, servicio, localidad, mensaje }),
       });
 
       if (response.ok) {
@@ -463,15 +463,11 @@
         toast.classList.add('flex');
         window.scrollTo({ top: toast.offsetTop - 100, behavior: 'smooth' });
       } else {
-        // Si Formspree no está configurado, fallback a mailto
-        window.location.href = `mailto:investbuildmultiply@gmail.com?subject=Solicitud de presupuesto - IBM Company&body=Nombre: ${nombre}%0ATel%C3%A9fono: ${telefono}%0AServicio: ${servicio}`;
+        alert('Hubo un error al enviar. Llámanos al 666 152 226 o escríbenos por WhatsApp.');
       }
-    } catch {
+    } catch (err) {
       // Fallback mailto
-      const nombre = document.getElementById('nombre').value.trim();
-      const telefono = document.getElementById('telefono').value.trim();
-      const servicio = document.getElementById('servicio').value;
-      window.location.href = `mailto:investbuildmultiply@gmail.com?subject=Solicitud de presupuesto - IBM Company&body=Nombre: ${nombre}%0ATel%C3%A9fono: ${telefono}%0AServicio: ${servicio}`;
+      window.location.href = `mailto:investbuildmultiply@gmail.com?subject=Solicitud%20presupuesto&body=Nombre:%20${encodeURIComponent(nombre)}%0ATel%C3%A9fono:%20${encodeURIComponent(telefono)}%0AServicio:%20${encodeURIComponent(servicio)}`;
     } finally {
       submitBtn.disabled = false;
       btnText.textContent = 'Enviar solicitud';
