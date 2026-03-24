@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Herramientas | IBM Company — Calculadora de Encimeras Gandía</title>
+<meta name="description" content="Herramientas gratuitas para tu reforma: calculadora de m² de encimera, comparador de materiales y estimador de presupuesto. IBM Company, marmolista en Gandía."/>
+<link rel="canonical" href="https://www.ibm-company.es/herramientas"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "surface-container": "#f3ede4","surface-container-high": "#ede7de","inverse-surface": "#1C1C1C",
+          "primary-container": "#8F6D62","on-background": "#1d1b16","surface-container-lowest": "#ffffff",
+          "on-surface-variant": "#4e453c","surface-container-low": "#f9f3ea","outline-variant": "#d1c4b9",
+          "on-primary": "#ffffff","surface": "#fff8ef","primary": "#C9A96E","on-surface": "#1d1b16",
+          "background": "#fff8ef","surface-dim": "#dfd9d0","outline": "#7f756b","surface-container-highest": "#e8e2d9",
+        },
+        fontFamily: { "headline": ["Newsreader","serif"],"body": ["Manrope","sans-serif"],"label": ["Manrope","sans-serif"] },
+        borderRadius: {"DEFAULT": "0px","lg": "0px","xl": "0px","full": "9999px"},
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24; }
+  body { min-height: max(884px, 100dvh); }
+  .whatsapp-float { position:fixed;width:60px;height:60px;bottom:32px;right:32px;background-color:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:100;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.2s ease,box-shadow 0.2s ease; }
+  .whatsapp-float:hover { transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,0.5); }
+  .whatsapp-float svg { width:32px;height:32px;fill:white; }
+
+  /* Slider personalizado */
+  input[type=range] { -webkit-appearance:none; appearance:none; width:100%; height:4px; background:#d1c4b9; outline:none; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:20px; height:20px; border-radius:50%; background:#C9A96E; cursor:pointer; }
+  input[type=range]::-moz-range-thumb { width:20px; height:20px; border-radius:50%; background:#C9A96E; cursor:pointer; border:none; }
+
+  /* Resultado animado */
+  .result-card { transition: all 0.3s ease; }
+  .tab-btn { transition: all 0.2s ease; }
+  .tab-btn.active { background: #C9A96E; color: white; }
+  .tool-section { display: none; }
+  .tool-section.active { display: block; }
+</style>
+</head>
+<body class="bg-background text-on-background font-body">
+
+<!-- HEADER -->
+<header class="fixed top-0 left-0 w-full flex justify-between items-center px-8 py-5 bg-stone-50/90 backdrop-blur-xl z-50 shadow-[0_4px_24px_rgba(29,27,22,0.06)]">
+  <div class="flex items-center gap-3">
+    <span class="material-symbols-outlined text-amber-700" style="font-size:28px">home_repair_service</span>
+    <div class="flex flex-col leading-tight">
+      <a href="index.html" class="text-xl font-serif font-bold text-stone-900 tracking-tight hover:text-amber-700 transition-colors">IBM Company</a>
+      <span class="text-[9px] font-label uppercase tracking-[0.18em] text-amber-700">Invest · Build · Multiply</span>
+    </div>
+  </div>
+  <nav class="hidden md:flex gap-8 items-center">
+    <div class="relative group">
+      <a class="text-xs uppercase tracking-widest font-label text-stone-500 hover:text-stone-900 transition-colors cursor-pointer" href="#">Encimeras</a>
+      <div class="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border border-stone-100 hidden group-hover:block z-50">
+        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50" href="encimera/cocinas.html">Cocinas</a>
+        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50" href="encimera/barra.html">Barra</a>
+        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50" href="encimera/onix.html">Ónix</a>
+        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50" href="encimera/fregadero.html">Fregadero</a>
+      </div>
+    </div>
+    <div class="relative group">
+      <a class="text-xs uppercase tracking-widest font-label text-stone-500 hover:text-stone-900 transition-colors cursor-pointer" href="#">Reformas</a>
+      <div class="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border border-stone-100 hidden group-hover:block z-50">
+        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50" href="reformas/banos.html">Baños</a>
+        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50" href="reformas/escaleras.html">Escaleras</a>
+        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50" href="reformas/fachada.html">Fachada</a>
+        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50" href="reformas/chimenea.html">Chimenea</a>
+      </div>
+    </div>
+    <div class="relative group">
+      <a class="text-xs uppercase tracking-widest font-label text-stone-500 hover:text-stone-900 transition-colors cursor-pointer" href="#">Exterior</a>
+      <div class="absolute top-full left-0 mt-2 w-52 bg-white shadow-lg border border-stone-100 hidden group-hover:block z-50">
+        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50" href="exterior/cocinas-exteriores.html">Cocinas Exteriores</a>
+        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50" href="exterior/chimeneas-gavion.html">Chimeneas Gabión</a>
+      </div>
+    </div>
+    <a class="text-xs uppercase tracking-widest font-label text-stone-900 border-b border-amber-700/40 pb-0.5" href="herramientas.html">Herramientas</a>
+    <a class="text-xs uppercase tracking-widest font-label text-stone-500 hover:text-stone-900 transition-colors" href="contacto.html">Contacto</a>
+    <a href="tel:+34666152226" class="hidden lg:flex items-center gap-2 text-xs font-label uppercase tracking-widest text-amber-700 font-bold">
+      <span class="material-symbols-outlined" style="font-size:16px">phone</span>666 152 226
+    </a>
+  </nav>
+  <a href="contacto.html" class="px-5 py-2.5 bg-primary text-white text-xs uppercase tracking-widest font-label hover:opacity-90 transition-opacity font-semibold">Pide Presupuesto</a>
+</header>
+
+<main class="pt-28">
+
+  <!-- BREADCRUMB -->
+  <div class="px-8 lg:px-16 py-4 bg-surface-container-low border-b border-outline-variant/20">
+    <p class="text-xs font-label text-on-surface-variant">
+      <a href="index.html" class="hover:text-primary transition-colors">Inicio</a>
+      <span class="mx-2">›</span><span class="text-primary font-semibold">Herramientas</span>
+    </p>
+  </div>
+
+  <!-- HERO INTRO -->
+  <section class="px-8 lg:px-16 py-16 max-w-4xl">
+    <p class="text-xs uppercase tracking-[0.2em] font-label text-primary mb-6">Herramientas gratuitas</p>
+    <h1 class="text-5xl md:text-6xl font-headline tracking-tight leading-[0.95] text-on-surface mb-6">Calcula antes de llamar.<br/>Sin compromisos.</h1>
+    <p class="text-lg font-light text-on-surface-variant leading-relaxed max-w-xl">Estas calculadoras te ayudan a hacerte una idea de las medidas, la superficie y el material de tu proyecto antes de pedirnos presupuesto. Son orientativas — el precio final siempre se da tras ver la obra.</p>
+  </section>
+
+  <!-- TABS -->
+  <section class="px-8 lg:px-16 pb-4">
+    <div class="flex flex-wrap gap-2">
+      <button onclick="switchTool('calc-encimera')" id="btn-calc-encimera"
+        class="tab-btn active px-6 py-3 text-xs font-label uppercase tracking-widest border border-primary">
+        Calculadora de Encimera
+      </button>
+      <button onclick="switchTool('calc-superficie')" id="btn-calc-superficie"
+        class="tab-btn px-6 py-3 text-xs font-label uppercase tracking-widest border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary">
+        Calculadora de m² Baño
+      </button>
+      <button onclick="switchTool('comparador')" id="btn-comparador"
+        class="tab-btn px-6 py-3 text-xs font-label uppercase tracking-widest border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary">
+        Comparador de Materiales
+      </button>
+      <button onclick="switchTool('peldanos')" id="btn-peldanos"
+        class="tab-btn px-6 py-3 text-xs font-label uppercase tracking-widest border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary">
+        Calculadora de Peldaños
+      </button>
+    </div>
+  </section>
+
+  <!-- ====== HERRAMIENTA 1: CALCULADORA ENCIMERA ====== -->
+  <section id="calc-encimera" class="tool-section active px-8 lg:px-16 py-12">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <!-- Inputs -->
+        <div class="space-y-10">
+          <div>
+            <h2 class="text-3xl font-headline mb-2">Calculadora de encimera</h2>
+            <p class="text-sm text-on-surface-variant">Introduce las medidas de tu encimera en centímetros y te mostramos los metros cuadrados y una estimación de precio orientativa.</p>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant mb-3">
+                Longitud total <span id="val-largo" class="text-primary font-bold">200 cm</span>
+              </label>
+              <input type="range" id="largo" min="30" max="600" value="200" step="5"
+                oninput="document.getElementById('val-largo').textContent=this.value+' cm'; calcEncimera()"/>
+              <div class="flex justify-between text-[10px] font-label text-stone-400 mt-1"><span>30 cm</span><span>600 cm</span></div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant mb-3">
+                Fondo (profundidad) <span id="val-fondo" class="text-primary font-bold">60 cm</span>
+              </label>
+              <input type="range" id="fondo" min="20" max="120" value="60" step="5"
+                oninput="document.getElementById('val-fondo').textContent=this.value+' cm'; calcEncimera()"/>
+              <div class="flex justify-between text-[10px] font-label text-stone-400 mt-1"><span>20 cm</span><span>120 cm</span></div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant mb-3">Material</label>
+              <div class="grid grid-cols-2 gap-3">
+                <label class="flex items-center gap-3 p-3 border border-outline-variant cursor-pointer hover:border-primary group">
+                  <input type="radio" name="material-enc" value="60" checked onchange="calcEncimera()" class="accent-amber-600"/>
+                  <div>
+                    <p class="text-xs font-label font-semibold uppercase tracking-widest">Granito</p>
+                    <p class="text-[10px] text-stone-400">Desde ~60 €/m²</p>
+                  </div>
+                </label>
+                <label class="flex items-center gap-3 p-3 border border-outline-variant cursor-pointer hover:border-primary">
+                  <input type="radio" name="material-enc" value="90" onchange="calcEncimera()" class="accent-amber-600"/>
+                  <div>
+                    <p class="text-xs font-label font-semibold uppercase tracking-widest">Silestone</p>
+                    <p class="text-[10px] text-stone-400">Desde ~90 €/m²</p>
+                  </div>
+                </label>
+                <label class="flex items-center gap-3 p-3 border border-outline-variant cursor-pointer hover:border-primary">
+                  <input type="radio" name="material-enc" value="80" onchange="calcEncimera()" class="accent-amber-600"/>
+                  <div>
+                    <p class="text-xs font-label font-semibold uppercase tracking-widest">Mármol</p>
+                    <p class="text-[10px] text-stone-400">Desde ~80 €/m²</p>
+                  </div>
+                </label>
+                <label class="flex items-center gap-3 p-3 border border-outline-variant cursor-pointer hover:border-primary">
+                  <input type="radio" name="material-enc" value="110" onchange="calcEncimera()" class="accent-amber-600"/>
+                  <div>
+                    <p class="text-xs font-label font-semibold uppercase tracking-widest">Dekton</p>
+                    <p class="text-[10px] text-stone-400">Desde ~110 €/m²</p>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input type="checkbox" id="con-fregadero" onchange="calcEncimera()" class="accent-amber-600 w-4 h-4"/>
+                <span class="text-xs font-label uppercase tracking-widest text-on-surface-variant">Incluir corte de fregadero (+25 €)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resultado -->
+        <div class="result-card bg-inverse-surface text-white p-10 space-y-8 sticky top-36">
+          <p class="text-xs font-label uppercase tracking-widest opacity-50">Resultado estimado</p>
+          <div>
+            <p class="text-xs font-label uppercase tracking-widest text-primary mb-2">Superficie</p>
+            <p class="text-5xl font-headline" id="res-m2">1,20 m²</p>
+          </div>
+          <div class="border-t border-white/10 pt-6">
+            <p class="text-xs font-label uppercase tracking-widest text-primary mb-2">Precio orientativo</p>
+            <p class="text-5xl font-headline" id="res-precio">72 €</p>
+            <p class="text-xs opacity-50 mt-2">Sin instalación · IVA no incluido</p>
+          </div>
+          <div class="border-t border-white/10 pt-6 space-y-2">
+            <p class="text-[10px] font-label uppercase tracking-widest opacity-40">Este cálculo es orientativo. El precio real puede variar según el modelo de material, el número de piezas y los trabajos adicionales.</p>
+          </div>
+          <a href="https://wa.me/34666152226?text=Hola,%20he%20calculado%20mi%20encimera%20con%20vuestra%20herramienta%20y%20quiero%20presupuesto"
+             class="flex items-center justify-center gap-2 w-full py-4 bg-primary text-white text-xs font-label uppercase tracking-widest hover:opacity-90 transition-opacity">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pedir presupuesto ahora
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== HERRAMIENTA 2: CALCULADORA DE m² BAÑO ====== -->
+  <section id="calc-superficie" class="tool-section px-8 lg:px-16 py-12">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div class="space-y-10">
+          <div>
+            <h2 class="text-3xl font-headline mb-2">Calculadora de m² de baño</h2>
+            <p class="text-sm text-on-surface-variant">Introduce las medidas de tu baño y calcula la superficie de suelo y paredes para alicatado o reforma.</p>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant mb-3">
+                Largo del baño <span id="val-bano-largo" class="text-primary font-bold">250 cm</span>
+              </label>
+              <input type="range" id="bano-largo" min="100" max="600" value="250" step="10"
+                oninput="document.getElementById('val-bano-largo').textContent=this.value+' cm'; calcBano()"/>
+            </div>
+            <div>
+              <label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant mb-3">
+                Ancho del baño <span id="val-bano-ancho" class="text-primary font-bold">180 cm</span>
+              </label>
+              <input type="range" id="bano-ancho" min="80" max="400" value="180" step="10"
+                oninput="document.getElementById('val-bano-ancho').textContent=this.value+' cm'; calcBano()"/>
+            </div>
+            <div>
+              <label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant mb-3">
+                Altura de las paredes <span id="val-bano-alto" class="text-primary font-bold">220 cm</span>
+              </label>
+              <input type="range" id="bano-alto" min="200" max="300" value="220" step="10"
+                oninput="document.getElementById('val-bano-alto').textContent=this.value+' cm'; calcBano()"/>
+            </div>
+            <div>
+              <label class="text-xs font-label uppercase tracking-widest text-on-surface-variant mb-3 block">¿Qué quieres calcular?</label>
+              <div class="space-y-2">
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input type="checkbox" id="chk-suelo" checked onchange="calcBano()" class="accent-amber-600 w-4 h-4"/>
+                  <span class="text-sm text-on-surface-variant">Suelo</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input type="checkbox" id="chk-paredes" checked onchange="calcBano()" class="accent-amber-600 w-4 h-4"/>
+                  <span class="text-sm text-on-surface-variant">Paredes (4 paredes completas)</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="result-card bg-inverse-surface text-white p-10 space-y-8 sticky top-36">
+          <p class="text-xs font-label uppercase tracking-widest opacity-50">Resultado estimado</p>
+          <div>
+            <p class="text-xs font-label uppercase tracking-widest text-primary mb-2">Superficie de suelo</p>
+            <p class="text-4xl font-headline" id="res-bano-suelo">4,50 m²</p>
+          </div>
+          <div class="border-t border-white/10 pt-6">
+            <p class="text-xs font-label uppercase tracking-widest text-primary mb-2">Superficie de paredes</p>
+            <p class="text-4xl font-headline" id="res-bano-paredes">18,92 m²</p>
+          </div>
+          <div class="border-t border-white/10 pt-6">
+            <p class="text-xs font-label uppercase tracking-widest text-primary mb-2">Total superficie</p>
+            <p class="text-5xl font-headline" id="res-bano-total">23,42 m²</p>
+            <p class="text-xs opacity-50 mt-2">Con un 10% extra de merma recomendado</p>
+          </div>
+          <a href="contacto.html"
+             class="flex items-center justify-center gap-2 w-full py-4 bg-primary text-white text-xs font-label uppercase tracking-widest hover:opacity-90 transition-opacity">
+            Pedir presupuesto de reforma
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== HERRAMIENTA 3: COMPARADOR DE MATERIALES ====== -->
+  <section id="comparador" class="tool-section px-8 lg:px-16 py-12">
+    <div class="max-w-5xl mx-auto">
+      <div class="mb-10">
+        <h2 class="text-3xl font-headline mb-2">Comparador de materiales</h2>
+        <p class="text-sm text-on-surface-variant">Compara las características de los materiales más habituales para encimeras y revestimientos.</p>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm font-body border-collapse">
+          <thead>
+            <tr class="bg-inverse-surface text-white">
+              <th class="p-4 text-left text-xs font-label uppercase tracking-widest">Material</th>
+              <th class="p-4 text-center text-xs font-label uppercase tracking-widest">Dureza</th>
+              <th class="p-4 text-center text-xs font-label uppercase tracking-widest">Resistencia agua</th>
+              <th class="p-4 text-center text-xs font-label uppercase tracking-widest">Resistencia calor</th>
+              <th class="p-4 text-center text-xs font-label uppercase tracking-widest">Mantenimiento</th>
+              <th class="p-4 text-center text-xs font-label uppercase tracking-widest">Precio aprox.</th>
+              <th class="p-4 text-center text-xs font-label uppercase tracking-widest">Exterior</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-outline-variant/30 hover:bg-surface-container-low">
+              <td class="p-4 font-semibold font-headline text-base">Granito</td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">●●●●●</span></td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">●●●●●</span></td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">●●●●●</span></td>
+              <td class="p-4 text-center text-xs text-on-surface-variant">Mínimo</td>
+              <td class="p-4 text-center text-xs text-primary font-semibold">60–100 €/m²</td>
+              <td class="p-4 text-center text-green-600 font-bold text-lg">✓</td>
+            </tr>
+            <tr class="border-b border-outline-variant/30 hover:bg-surface-container-low bg-surface-container-low/50">
+              <td class="p-4 font-semibold font-headline text-base">Mármol</td>
+              <td class="p-4 text-center"><span class="text-amber-500 font-bold">●●●○○</span></td>
+              <td class="p-4 text-center"><span class="text-amber-500 font-bold">●●●○○</span></td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">●●●●○</span></td>
+              <td class="p-4 text-center text-xs text-on-surface-variant">Sellado anual</td>
+              <td class="p-4 text-center text-xs text-primary font-semibold">80–150 €/m²</td>
+              <td class="p-4 text-center text-amber-500 font-bold text-lg">~</td>
+            </tr>
+            <tr class="border-b border-outline-variant/30 hover:bg-surface-container-low">
+              <td class="p-4 font-semibold font-headline text-base">Silestone</td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">●●●●○</span></td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">●●●●●</span></td>
+              <td class="p-4 text-center"><span class="text-amber-500 font-bold">●●●○○</span></td>
+              <td class="p-4 text-center text-xs text-on-surface-variant">Sin mantenimiento</td>
+              <td class="p-4 text-center text-xs text-primary font-semibold">90–160 €/m²</td>
+              <td class="p-4 text-center text-red-500 font-bold text-lg">✗</td>
+            </tr>
+            <tr class="border-b border-outline-variant/30 hover:bg-surface-container-low bg-surface-container-low/50">
+              <td class="p-4 font-semibold font-headline text-base">Dekton / Neolith</td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">●●●●●</span></td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">●●●●●</span></td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">●●●●●</span></td>
+              <td class="p-4 text-center text-xs text-on-surface-variant">Sin mantenimiento</td>
+              <td class="p-4 text-center text-xs text-primary font-semibold">110–200 €/m²</td>
+              <td class="p-4 text-center text-green-600 font-bold text-lg">✓</td>
+            </tr>
+            <tr class="border-b border-outline-variant/30 hover:bg-surface-container-low">
+              <td class="p-4 font-semibold font-headline text-base">Porcelánico</td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">●●●●○</span></td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">●●●●●</span></td>
+              <td class="p-4 text-center"><span class="text-amber-500 font-bold">●●●●○</span></td>
+              <td class="p-4 text-center text-xs text-on-surface-variant">Sin mantenimiento</td>
+              <td class="p-4 text-center text-xs text-primary font-semibold">40–90 €/m²</td>
+              <td class="p-4 text-center text-green-600 font-bold text-lg">✓</td>
+            </tr>
+            <tr class="hover:bg-surface-container-low bg-surface-container-low/50">
+              <td class="p-4 font-semibold font-headline text-base">Ónix</td>
+              <td class="p-4 text-center"><span class="text-red-400 font-bold">●●○○○</span></td>
+              <td class="p-4 text-center"><span class="text-amber-500 font-bold">●●●○○</span></td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">●●●●○</span></td>
+              <td class="p-4 text-center text-xs text-on-surface-variant">Sellado frecuente</td>
+              <td class="p-4 text-center text-xs text-primary font-semibold">200–450 €/m²</td>
+              <td class="p-4 text-center text-red-500 font-bold text-lg">✗</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-6 text-xs text-on-surface-variant">* Los precios son orientativos y dependen del modelo, el proveedor y los trabajos de instalación. Consulta presupuesto sin compromiso.</p>
+    </div>
+  </section>
+
+  <!-- ====== HERRAMIENTA 4: CALCULADORA DE PELDAÑOS ====== -->
+  <section id="peldanos" class="tool-section px-8 lg:px-16 py-12">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div class="space-y-10">
+          <div>
+            <h2 class="text-3xl font-headline mb-2">Calculadora de peldaños</h2>
+            <p class="text-sm text-on-surface-variant">Estima la superficie total de mármol o granito necesaria para los peldaños de tu escalera.</p>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant mb-3">
+                Número de peldaños <span id="val-npeld" class="text-primary font-bold">12</span>
+              </label>
+              <input type="range" id="n-peld" min="1" max="50" value="12" step="1"
+                oninput="document.getElementById('val-npeld').textContent=this.value; calcPeldanos()"/>
+              <div class="flex justify-between text-[10px] font-label text-stone-400 mt-1"><span>1</span><span>50</span></div>
+            </div>
+            <div>
+              <label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant mb-3">
+                Ancho del peldaño <span id="val-peld-ancho" class="text-primary font-bold">120 cm</span>
+              </label>
+              <input type="range" id="peld-ancho" min="60" max="300" value="120" step="5"
+                oninput="document.getElementById('val-peld-ancho').textContent=this.value+' cm'; calcPeldanos()"/>
+            </div>
+            <div>
+              <label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant mb-3">
+                Fondo del peldaño (huella) <span id="val-peld-fondo" class="text-primary font-bold">30 cm</span>
+              </label>
+              <input type="range" id="peld-fondo" min="20" max="45" value="30" step="1"
+                oninput="document.getElementById('val-peld-fondo').textContent=this.value+' cm'; calcPeldanos()"/>
+            </div>
+            <div>
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input type="checkbox" id="chk-tabica" checked onchange="calcPeldanos()" class="accent-amber-600 w-4 h-4"/>
+                <span class="text-sm text-on-surface-variant">Incluir tabicas (contrahuellas)</span>
+              </label>
+            </div>
+            <div>
+              <label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant mb-3">Material</label>
+              <div class="grid grid-cols-2 gap-3">
+                <label class="flex items-center gap-3 p-3 border border-outline-variant cursor-pointer hover:border-primary">
+                  <input type="radio" name="mat-peld" value="65" checked onchange="calcPeldanos()" class="accent-amber-600"/>
+                  <div><p class="text-xs font-label font-semibold uppercase tracking-widest">Granito</p><p class="text-[10px] text-stone-400">~65 €/m²</p></div>
+                </label>
+                <label class="flex items-center gap-3 p-3 border border-outline-variant cursor-pointer hover:border-primary">
+                  <input type="radio" name="mat-peld" value="85" onchange="calcPeldanos()" class="accent-amber-600"/>
+                  <div><p class="text-xs font-label font-semibold uppercase tracking-widest">Mármol</p><p class="text-[10px] text-stone-400">~85 €/m²</p></div>
+                </label>
+                <label class="flex items-center gap-3 p-3 border border-outline-variant cursor-pointer hover:border-primary">
+                  <input type="radio" name="mat-peld" value="55" onchange="calcPeldanos()" class="accent-amber-600"/>
+                  <div><p class="text-xs font-label font-semibold uppercase tracking-widest">Porcelánico</p><p class="text-[10px] text-stone-400">~55 €/m²</p></div>
+                </label>
+                <label class="flex items-center gap-3 p-3 border border-outline-variant cursor-pointer hover:border-primary">
+                  <input type="radio" name="mat-peld" value="120" onchange="calcPeldanos()" class="accent-amber-600"/>
+                  <div><p class="text-xs font-label font-semibold uppercase tracking-widest">Dekton</p><p class="text-[10px] text-stone-400">~120 €/m²</p></div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="result-card bg-inverse-surface text-white p-10 space-y-8 sticky top-36">
+          <p class="text-xs font-label uppercase tracking-widest opacity-50">Resultado estimado</p>
+          <div>
+            <p class="text-xs font-label uppercase tracking-widest text-primary mb-2">Superficie de huellas</p>
+            <p class="text-3xl font-headline" id="res-peld-huellas">0,43 m²</p>
+          </div>
+          <div class="border-t border-white/10 pt-4">
+            <p class="text-xs font-label uppercase tracking-widest text-primary mb-2">Superficie de tabicas</p>
+            <p class="text-3xl font-headline" id="res-peld-tabicas">0,22 m²</p>
+          </div>
+          <div class="border-t border-white/10 pt-4">
+            <p class="text-xs font-label uppercase tracking-widest text-primary mb-2">Total superficie</p>
+            <p class="text-5xl font-headline" id="res-peld-total">0,65 m²</p>
+          </div>
+          <div class="border-t border-white/10 pt-4">
+            <p class="text-xs font-label uppercase tracking-widest text-primary mb-2">Precio orientativo</p>
+            <p class="text-5xl font-headline" id="res-peld-precio">42 €</p>
+            <p class="text-xs opacity-50 mt-2">Sin instalación · IVA no incluido</p>
+          </div>
+          <a href="https://wa.me/34666152226?text=Hola,%20he%20calculado%20mis%20peldaños%20con%20vuestra%20herramienta%20y%20quiero%20presupuesto"
+             class="flex items-center justify-center gap-2 w-full py-4 bg-primary text-white text-xs font-label uppercase tracking-widest hover:opacity-90 transition-opacity">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pedir presupuesto ahora
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="py-24 px-8 text-center bg-inverse-surface text-inverse-on-surface mt-12">
+    <div class="max-w-xl mx-auto space-y-6">
+      <h2 class="text-4xl font-headline tracking-tight">¿Ya tienes el cálculo?</h2>
+      <p class="text-white/70 font-light leading-relaxed">Escríbenos y te damos precio real. Medición gratuita en Gandía y toda la Costa Blanca.</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+        <a href="contacto.html" class="px-10 py-4 bg-primary text-white text-xs font-label uppercase tracking-widest hover:opacity-90 transition-opacity font-semibold">Pedir Presupuesto</a>
+        <a href="https://wa.me/34666152226" class="px-10 py-4 border border-primary text-primary text-xs font-label uppercase tracking-widest hover:bg-primary hover:text-white transition-all duration-300 inline-flex items-center justify-center gap-2">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-stone-200 py-16">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-12 max-w-7xl mx-auto">
+    <div class="space-y-4">
+      <span class="text-xl font-serif font-bold text-stone-900">IBM Company</span>
+      <p class="text-xs font-label uppercase tracking-wider text-amber-700">Invest · Build · Multiply</p>
+      <p class="text-sm font-light text-stone-600 leading-relaxed">Calle Cementeri de Benipeixcar, 23<br/>46727 Real de Gandia, Valencia</p>
+      <a href="tel:+34666152226" class="flex items-center gap-2 text-sm text-stone-600 hover:text-amber-700 transition-colors">
+        <span class="material-symbols-outlined" style="font-size:16px">phone</span>666 152 226
+      </a>
+    </div>
+    <div class="space-y-4">
+      <h4 class="text-lg font-serif text-stone-800">Herramientas</h4>
+      <ul class="space-y-2">
+        <li><a class="text-sm font-light text-stone-600 hover:underline decoration-amber-700 underline-offset-4" href="herramientas.html">Calculadora de encimera</a></li>
+        <li><a class="text-sm font-light text-stone-600 hover:underline decoration-amber-700 underline-offset-4" href="herramientas.html">Calculadora de baño</a></li>
+        <li><a class="text-sm font-light text-stone-600 hover:underline decoration-amber-700 underline-offset-4" href="herramientas.html">Comparador de materiales</a></li>
+      </ul>
+    </div>
+    <div class="space-y-4">
+      <h4 class="text-lg font-serif text-stone-800">Información</h4>
+      <ul class="space-y-2">
+        <li><a class="text-sm font-light text-stone-600 hover:underline decoration-amber-700 underline-offset-4" href="contacto.html">Contacto</a></li>
+        <li><a class="text-sm font-light text-stone-600 hover:underline decoration-amber-700 underline-offset-4" href="privacidad.html">Privacidad</a></li>
+        <li><a class="text-sm font-light text-stone-600 hover:underline decoration-amber-700 underline-offset-4" href="cookies.html">Cookies</a></li>
+      </ul>
+      <p class="text-sm font-light text-stone-600">© 2026 IBM Company SL — Gandía, Costa Blanca</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/34666152226?text=Hola,%20me%20gustar%C3%ADa%20un%20presupuesto"
+   class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ========== TABS ==========
+function switchTool(id) {
+  document.querySelectorAll('.tool-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('btn-' + id).classList.add('active');
+}
+
+// ========== CALC ENCIMERA ==========
+function calcEncimera() {
+  const largo = +document.getElementById('largo').value;
+  const fondo = +document.getElementById('fondo').value;
+  const precio = +document.querySelector('input[name="material-enc"]:checked').value;
+  const fregadero = document.getElementById('con-fregadero').checked ? 25 : 0;
+  const m2 = (largo * fondo) / 10000;
+  const total = Math.round(m2 * precio + fregadero);
+  document.getElementById('res-m2').textContent = m2.toFixed(2) + ' m²';
+  document.getElementById('res-precio').textContent = total + ' €';
+}
+
+// ========== CALC BAÑO ==========
+function calcBano() {
+  const largo = +document.getElementById('bano-largo').value / 100;
+  const ancho = +document.getElementById('bano-ancho').value / 100;
+  const alto = +document.getElementById('bano-alto').value / 100;
+  const hacerSuelo = document.getElementById('chk-suelo').checked;
+  const hacerParedes = document.getElementById('chk-paredes').checked;
+  const suelo = hacerSuelo ? largo * ancho : 0;
+  const paredes = hacerParedes ? 2 * (largo + ancho) * alto : 0;
+  const total = (suelo + paredes) * 1.10;
+  document.getElementById('res-bano-suelo').textContent = suelo.toFixed(2) + ' m²';
+  document.getElementById('res-bano-paredes').textContent = paredes.toFixed(2) + ' m²';
+  document.getElementById('res-bano-total').textContent = total.toFixed(2) + ' m²';
+}
+
+// ========== CALC PELDAÑOS ==========
+function calcPeldanos() {
+  const n = +document.getElementById('n-peld').value;
+  const ancho = +document.getElementById('peld-ancho').value / 100;
+  const fondo = +document.getElementById('peld-fondo').value / 100;
+  const tabica = document.getElementById('chk-tabica').checked;
+  const precio = +document.querySelector('input[name="mat-peld"]:checked').value;
+  const alturaTabica = 0.17; // altura media escalón 17cm
+  const huellas = n * ancho * fondo;
+  const tabicas = tabica ? n * ancho * alturaTabica : 0;
+  const total = huellas + tabicas;
+  const totalPrecio = Math.round(total * precio);
+  document.getElementById('res-peld-huellas').textContent = huellas.toFixed(2) + ' m²';
+  document.getElementById('res-peld-tabicas').textContent = tabicas.toFixed(2) + ' m²';
+  document.getElementById('res-peld-total').textContent = total.toFixed(2) + ' m²';
+  document.getElementById('res-peld-precio').textContent = totalPrecio + ' €';
+}
+
+// Inicializar todos
+calcEncimera();
+calcBano();
+calcPeldanos();
+</script>
+
+<script src="cookie-banner.js" defer></script>
+</body>
+</html>
