@@ -1,2 +1,54 @@
+# robots.txt — IBM Company
+# WEB EN CONSTRUCCIÓN — Crawling bloqueado temporalmente
+# Cuando la web esté lista, reemplazar todo por:
+#   User-agent: *
+#   Allow: /
+#   Sitemap: https://www.ibm-company.es/sitemap.xml
+
+# Bloquear todos los bots
 User-agent: *
+Disallow: /
+
+# Google
+User-agent: Googlebot
+Disallow: /
+
+# Google Images
+User-agent: Googlebot-Image
+Disallow: /
+
+# Bing / Microsoft
+User-agent: bingbot
+Disallow: /
+
+# Yahoo
+User-agent: Slurp
+Disallow: /
+
+# Facebook / Meta
+User-agent: facebookexternalhit
+Disallow: /
+
+# Twitter / X
+User-agent: Twitterbot
+Disallow: /
+
+# LinkedIn
+User-agent: LinkedInBot
+Disallow: /
+
+# ChatGPT / OpenAI
+User-agent: GPTBot
+Disallow: /
+User-agent: ChatGPT-User
+Disallow: /
+
+# Common Search / SEO crawlers
+User-agent: AhrefsBot
+Disallow: /
+User-agent: SemrushBot
+Disallow: /
+User-agent: MJ12bot
+Disallow: /
+User-agent: DotBot
 Disallow: /
