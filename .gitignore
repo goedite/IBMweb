@@ -1,0 +1,26 @@
+# .gitignore — IBM Company Web
+
+# Variables de entorno (NUNCA subir al repo)
+.env
+.env.local
+.env.production
+.env*.local
+
+# Node / Vercel
+node_modules/
+.vercel/
+.next/
+
+# Editores
+.vscode/
+.idea/
+*.code-workspace
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
