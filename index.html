@@ -13,6 +13,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="mobile.css"/>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -113,61 +114,15 @@
 </style>
 </head>
 <body class="bg-background text-on-background font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<script src="header.js"></script>
 
-<!-- ===== HEADER ===== -->
-<header class="fixed top-0 left-0 w-full flex justify-between items-center px-8 py-5 max-w-none bg-stone-50/90 dark:bg-stone-950/90 backdrop-blur-xl z-50 shadow-[0_4px_24px_rgba(29,27,22,0.06)]">
-  <div class="flex items-center gap-3">
-    <span class="material-symbols-outlined text-amber-700 dark:text-amber-300" style="font-size:28px">home_repair_service</span>
-    <div class="flex flex-col leading-tight">
-      <span class="text-xl font-serif font-bold text-stone-900 dark:text-stone-50 tracking-tight">IBM Company</span>
-      <span class="text-[9px] font-label uppercase tracking-[0.18em] text-amber-700 dark:text-amber-400">Invest · Build · Multiply</span>
-    </div>
-  </div>
-  <nav class="hidden md:flex gap-8 items-center">
-    <div class="relative group">
-      <a class="text-xs uppercase tracking-widest font-label text-stone-700 dark:text-stone-300 border-b border-amber-700/40 pb-0.5 transition-opacity opacity-90 cursor-pointer" href="#">Encimeras</a>
-      <div class="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border border-stone-100 hidden group-hover:block z-50">
-        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50 hover:text-stone-900 transition-colors" href="/encimera/cocinas.html">Cocinas</a>
-        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50 hover:text-stone-900 transition-colors" href="/encimera/barra.html">Barra</a>
-        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50 hover:text-stone-900 transition-colors" href="/encimera/onix.html">Ónix</a>
-        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50 hover:text-stone-900 transition-colors" href="/encimera/fregadero.html">Fregadero</a>
-      </div>
-    </div>
-    <div class="relative group">
-      <a class="text-xs uppercase tracking-widest font-label text-stone-500 dark:text-stone-400 hover:text-stone-900 transition-colors duration-300 cursor-pointer" href="#">Reformas</a>
-      <div class="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border border-stone-100 hidden group-hover:block z-50">
-        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50 hover:text-stone-900 transition-colors" href="/reformas/banos.html">Baños</a>
-        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50 hover:text-stone-900 transition-colors" href="/reformas/escaleras.html">Escaleras</a>
-        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50 hover:text-stone-900 transition-colors" href="/reformas/fachada.html">Fachada</a>
-        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50 hover:text-stone-900 transition-colors" href="/reformas/chimenea.html">Chimenea</a>
-      </div>
-    </div>
-    <div class="relative group">
-      <a class="text-xs uppercase tracking-widest font-label text-stone-500 dark:text-stone-400 hover:text-stone-900 transition-colors duration-300 cursor-pointer" href="#">Exterior</a>
-      <div class="absolute top-full left-0 mt-2 w-52 bg-white shadow-lg border border-stone-100 hidden group-hover:block z-50">
-        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50 hover:text-stone-900 transition-colors" href="/exterior/cocinas-exteriores.html">Cocinas Exteriores</a>
-        <a class="block px-4 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:bg-stone-50 hover:text-stone-900 transition-colors" href="/exterior/chimeneas-gavion.html">Chimeneas Gabión</a>
-      </div>
-    </div>
-    <a class="text-xs uppercase tracking-widest font-label text-stone-500 dark:text-stone-400 hover:text-stone-900 transition-colors duration-300" href="/herramientas.html">Herramientas</a>
-    <a class="text-xs uppercase tracking-widest font-label text-stone-500 dark:text-stone-400 hover:text-stone-900 transition-colors duration-300" href="/contacto.html">Contacto</a>
-    <a href="tel:+34666152226" class="hidden lg:flex items-center gap-2 text-xs font-label uppercase tracking-widest text-amber-700 hover:text-amber-900 transition-colors font-bold">
-      <span class="material-symbols-outlined" style="font-size:16px">phone</span>
-      666 152 226
-    </a>
-  </nav>
-  <a href="/contacto" class="px-5 py-2.5 bg-primary text-white text-xs uppercase tracking-widest font-label hover:opacity-90 transition-opacity font-semibold">
-    Pide Presupuesto
-  </a>
-</header>
-
-<main class="pt-28">
+<main class="pt-20 md:pt-28">
 
   <!-- ===== HERO ===== -->
-  <section class="relative px-8 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-end pb-32 pt-8">
+  <section class="relative px-8 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-end pb-16 pt-6 md:pb-32 md:pt-8">
     <div class="lg:col-span-7">
       <p class="text-xs uppercase tracking-[0.2em] font-label text-primary mb-6">Mármol · Reformas · Costa Blanca</p>
-      <h1 class="text-5xl md:text-7xl font-headline tracking-tight leading-[0.95] text-on-surface mb-8">Tu marmolista de confianza en Gandía</h1>
+      <h1 class="text-3xl sm:text-4xl md:text-7xl font-headline tracking-tight leading-[0.95] text-on-surface mb-8">Tu marmolista de confianza en Gandía</h1>
       <p class="max-w-md text-lg font-light text-on-surface-variant leading-relaxed">
         Corte de mármol, granito y porcelánico a medida. Reformas integrales de baños y cocinas con trato directo y precios competitivos. Desde Gandía hasta Alicante.
       </p>
@@ -188,7 +143,7 @@
           alt="Encimera de mármol recién terminada en taller"/>
       </div>
       <!-- Badge negro: Presupuesto 24h -->
-      <div class="absolute -bottom-6 -left-6 p-8 bg-on-surface text-surface max-w-xs">
+      <div class="hero-badge-abs md:!absolute md:!-bottom-6 md:!-left-6 p-6 md:p-8 bg-on-surface text-surface max-w-xs">
         <span class="block text-2xl font-headline italic mb-2">Presupuesto en 24h</span>
         <p class="text-xs font-label uppercase tracking-widest opacity-70">Medición gratuita en tu obra. Gandía, Denia, Jávea y toda la Costa Blanca.</p>
       </div>
@@ -465,7 +420,7 @@
   </section>
 
   <!-- ===== CTA FINAL ===== -->
-  <section class="py-40 px-8 text-center bg-inverse-surface text-inverse-on-surface">
+  <section class="py-20 md:py-40 px-8 text-center bg-inverse-surface text-inverse-on-surface">
     <div class="max-w-2xl mx-auto space-y-10">
       <span class="text-primary material-symbols-outlined text-6xl">handshake</span>
       <h2 class="text-5xl md:text-6xl font-headline tracking-tighter leading-none">¿Hablamos de tu proyecto?</h2>
@@ -489,7 +444,7 @@
 
 <!-- ===== FOOTER ===== -->
 <footer class="bg-stone-200 dark:bg-stone-900 py-16 mt-0">
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 max-w-7xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-6 md:px-12 max-w-7xl mx-auto">
 
     <!-- Col 1: Datos empresa -->
     <div class="space-y-5">

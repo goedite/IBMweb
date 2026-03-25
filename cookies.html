@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="light" lang="es">
 <head>
 <meta charset="utf-8"/>
@@ -9,6 +9,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="mobile.css"/>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -47,22 +48,9 @@
 </style>
 </head>
 <body class="bg-background text-on-surface font-body">
+<script src="header.js"></script>
 
-<!-- HEADER -->
-<header class="fixed top-0 left-0 w-full flex justify-between items-center px-8 py-5 bg-stone-50/90 backdrop-blur-xl z-50 shadow-[0_4px_24px_rgba(29,27,22,0.06)]">
-  <div class="flex items-center gap-3">
-    <span class="material-symbols-outlined text-amber-700" style="font-size:28px">home_repair_service</span>
-    <div class="flex flex-col leading-tight">
-      <a href="/" class="text-xl font-serif font-bold text-stone-900 tracking-tight hover:text-amber-700 transition-colors">IBM Company</a>
-      <span class="text-[9px] font-label uppercase tracking-[0.18em] text-amber-700">Invest · Build · Multiply</span>
-    </div>
-  </div>
-  <a href="/" class="px-5 py-2.5 bg-inverse-surface text-white text-xs uppercase tracking-widest font-label hover:opacity-90 transition-opacity font-semibold">
-    ← Volver
-  </a>
-</header>
-
-<main class="pt-28 pb-24">
+<main class="pt-20 md:pt-28 pb-24">
   <div class="max-w-3xl mx-auto px-8 lg:px-16">
 
     <!-- Título -->

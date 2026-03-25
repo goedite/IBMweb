@@ -1,0 +1,142 @@
+/* ============================================================
+   IBM Company — Mobile responsiveness fixes
+   Incluido en todas las páginas del sitio
+   Compatible: iOS Safari 15+, Android Chrome 90+
+   ============================================================ */
+
+/* Eliminar el mínimo de altura que forzaba scroll innecesario */
+body {
+  min-height: 100dvh !important;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   TOUCH: áreas táctiles mínimas (44px) para botones y links
+   ────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+
+  /* Reducir padding horizontal global en móvil */
+  .px-8 {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  /* Hero: reducir título principal en móvil */
+  .text-5xl {
+    font-size: 2.25rem !important;   /* 36px */
+    line-height: 1.05 !important;
+  }
+  .text-6xl {
+    font-size: 2.5rem !important;    /* 40px */
+    line-height: 1.05 !important;
+  }
+  .text-7xl {
+    font-size: 2.75rem !important;   /* 44px */
+    line-height: 1.05 !important;
+  }
+  .text-4xl {
+    font-size: 1.875rem !important;  /* 30px */
+    line-height: 1.1 !important;
+  }
+
+  /* ── Hero badge: sacar del flujo absoluto ─────────────── */
+  /* El badge negro con "Presupuesto 24h" / "Fabricación propia" */
+  .hero-badge-abs {
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    bottom: auto !important;
+    margin-top: 1rem;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* El contenedor del hero con aspect-ratio necesita más espacio */
+  .hero-img-wrap {
+    margin-top: 1.5rem;
+  }
+
+  /* ── Calculadora herramientas: quitar sticky en móvil ─── */
+  .result-card {
+    position: static !important;
+    top: auto !important;
+  }
+
+  /* ── Tabs herramientas: scroll horizontal ─────────────── */
+  .tabs-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex-wrap: nowrap !important;
+    padding-bottom: 4px;
+  }
+  .tabs-wrapper::-webkit-scrollbar { display: none; }
+  .tabs-wrapper button, .tabs-wrapper > * {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* ── Reducir padding vertical en secciones hero/CTA ───── */
+  .section-cta-py {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+
+  /* ── Gap reducido en grids mobile ─────────────────────── */
+  .gap-16 {
+    gap: 2rem !important;
+  }
+  .gap-12 {
+    gap: 1.5rem !important;
+  }
+
+  /* ── Footer padding horizontal ─────────────────────────── */
+  footer > div {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  /* ── Mejorar tap targets ────────────────────────────────── */
+  a, button {
+    -webkit-tap-highlight-color: rgba(201, 169, 110, 0.15);
+  }
+
+  /* ── WhatsApp flotante: bajar en pantallas pequeñas ─────── */
+  .whatsapp-float {
+    bottom: 20px !important;
+    right: 16px !important;
+    width: 52px !important;
+    height: 52px !important;
+  }
+  .whatsapp-float svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+
+  /* ── Secciones con pb-32 / py-40 exagerados ─────────────── */
+  .pb-32 { padding-bottom: 3rem !important; }
+  .py-40 { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+  .py-32 { padding-top: 3rem !important;   padding-bottom: 3rem !important;   }
+  .py-24 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+
+  /* ── Breadcrumb: evitar overflow con rutas largas ───────── */
+  .breadcrumb-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    display: block;
+  }
+}
+
+/* ── Fixes específicos iOS Safari ──────────────────────────── */
+@supports (-webkit-touch-callout: none) {
+  /* Evitar zoom en inputs en iOS (font-size mínimo 16px) */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  /* Deshabilitar el botón de llamada automática */
+  a[href^="tel"] {
+    color: inherit;
+  }
+}
