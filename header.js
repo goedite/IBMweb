@@ -108,8 +108,7 @@
     <a href="${base}index.html" class="flex items-center leading-tight group">
       <img src="${base}assets/logo-ibm.svg"
            alt="IBM Company"
-           class="h-16 md:h-20 w-auto max-w-[180px] md:max-w-[220px] object-contain transition-opacity group-hover:opacity-80"
-           style="mix-blend-mode:multiply"
+           class="h-14 md:h-16 w-auto object-contain rounded transition-opacity group-hover:opacity-80"
            loading="eager" />
     </a>
   </div>
