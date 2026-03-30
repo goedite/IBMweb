@@ -109,6 +109,7 @@
       <img src="${base}assets/logo-ibm.svg"
            alt="IBM Company"
            class="h-16 md:h-20 w-auto max-w-[180px] md:max-w-[220px] object-contain transition-opacity group-hover:opacity-80"
+           style="mix-blend-mode:multiply"
            loading="eager" />
     </a>
   </div>
