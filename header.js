@@ -105,12 +105,11 @@
 
   <!-- Logo -->
   <div class="flex items-center gap-2">
-    <a href="${base}index.html" class="flex flex-col items-start leading-tight group">
+    <a href="${base}index.html" class="flex items-center leading-tight group">
       <img src="${base}assets/logo-ibm.svg"
            alt="IBM Company"
-           class="h-10 md:h-12 w-auto object-contain transition-opacity group-hover:opacity-80"
+           class="h-16 md:h-20 w-auto max-w-[180px] md:max-w-[220px] object-contain transition-opacity group-hover:opacity-80"
            loading="eager" />
-      <span class="text-[7px] md:text-[8px] font-label uppercase tracking-[0.18em] text-amber-700 mt-0.5">Invest · Build · Multiply</span>
     </a>
   </div>
 
