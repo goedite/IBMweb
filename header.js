@@ -104,13 +104,14 @@
   class="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-8 py-4 md:py-5 bg-stone-50/95 backdrop-blur-xl z-50 shadow-[0_4px_24px_rgba(29,27,22,0.06)]">
 
   <!-- Logo -->
-  <div class="flex items-center gap-3">
-    <span class="material-symbols-outlined text-amber-700" style="font-size:26px">home_repair_service</span>
-    <div class="flex flex-col leading-tight">
-      <a href="${base}index.html"
-         class="text-lg md:text-xl font-serif font-bold text-stone-900 tracking-tight hover:text-amber-700 transition-colors">IBM Company</a>
-      <span class="text-[8px] md:text-[9px] font-label uppercase tracking-[0.18em] text-amber-700">Invest · Build · Multiply</span>
-    </div>
+  <div class="flex items-center gap-2">
+    <a href="${base}index.html" class="flex flex-col items-start leading-tight group">
+      <img src="${base}assets/logo-ibm.svg"
+           alt="IBM Company"
+           class="h-10 md:h-12 w-auto object-contain transition-opacity group-hover:opacity-80"
+           loading="eager" />
+      <span class="text-[7px] md:text-[8px] font-label uppercase tracking-[0.18em] text-amber-700 mt-0.5">Invest · Build · Multiply</span>
+    </a>
   </div>
 
   <!-- Desktop nav -->
