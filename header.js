@@ -71,13 +71,21 @@
     </a>`;
 
   // ── Mobile nav (acordeón) ────────────────────────────────────────────────
+  // catLinks: first item of each group is used as the category page (optional fallback)
+  const catLinks = [
+    '',  // Encimeras — no direct page, just accordion
+    '',  // Reformas — no direct page, just accordion
+    '',  // Exterior — no direct page, just accordion
+  ];
   const mobileGroups = navGroups.map((g, i) => `
     <div class="border-b border-stone-100">
-      <button onclick="ibmToggle(${i})"
-        class="w-full flex justify-between items-center px-6 py-4 text-xs font-label uppercase tracking-widest text-stone-700 font-semibold">
-        ${g.label}
-        <span id="ibm-chevron-${i}" class="material-symbols-outlined text-stone-400 transition-transform duration-200" style="font-size:18px">expand_more</span>
-      </button>
+      <div class="flex items-stretch">
+        <button onclick="ibmToggle(${i})"
+          class="flex-1 flex justify-between items-center px-6 py-4 text-xs font-label uppercase tracking-widest text-stone-700 font-semibold text-left">
+          ${g.label}
+          <span id="ibm-chevron-${i}" class="material-symbols-outlined text-stone-400 transition-transform duration-200" style="font-size:18px">expand_more</span>
+        </button>
+      </div>
       <div id="ibm-sub-${i}" class="hidden bg-stone-50">
         ${g.items.map(([href, lbl]) => `
           <a class="block px-8 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:text-primary transition-colors"
@@ -86,6 +94,8 @@
     </div>`).join('');
 
   const mobileDirectLinks = `
+    <a class="block px-6 py-4 text-xs font-label uppercase tracking-widest text-stone-700 border-b border-stone-100 hover:text-primary transition-colors font-bold"
+       href="${base}index.html">← Inicio</a>
     <a class="block px-6 py-4 text-xs font-label uppercase tracking-widest text-stone-700 border-b border-stone-100 hover:text-primary transition-colors"
        href="${base}herramientas.html">Herramientas</a>
     <a class="block px-6 py-4 text-xs font-label uppercase tracking-widest text-stone-700 border-b border-stone-100 hover:text-primary transition-colors"
