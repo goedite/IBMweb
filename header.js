@@ -58,8 +58,10 @@
     <div class="relative group">
       <a class="text-xs uppercase tracking-widest font-label text-stone-600 hover:text-stone-900 transition-colors cursor-pointer pb-0.5 border-b border-transparent hover:border-amber-700/40"
          href="#">${g.label}</a>
-      <div class="absolute top-full left-0 mt-2 w-52 bg-white shadow-xl border border-stone-100 hidden group-hover:block z-50">
-        ${g.items.map(([href, lbl]) => li(href, lbl)).join('')}
+      <div class="absolute top-full left-0 pt-2 w-52 hidden group-hover:block z-50">
+        <div class="bg-white shadow-xl border border-stone-100">
+          ${g.items.map(([href, lbl]) => li(href, lbl)).join('')}
+        </div>
       </div>
     </div>`).join('');
 
