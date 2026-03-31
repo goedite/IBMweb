@@ -70,13 +70,7 @@
       <span class="material-symbols-outlined" style="font-size:16px">phone</span>666 152 226
     </a>`;
 
-  // ── Mobile nav (acordeón) ────────────────────────────────────────────────
-  // catLinks: first item of each group is used as the category page (optional fallback)
-  const catLinks = [
-    '',  // Encimeras — no direct page, just accordion
-    '',  // Reformas — no direct page, just accordion
-    '',  // Exterior — no direct page, just accordion
-  ];
+  // Mobile nav (acordeon) - grupos con acordeon
   const mobileGroups = navGroups.map((g, i) => `
     <div class="border-b border-stone-100">
       <div class="flex items-stretch">
@@ -95,7 +89,7 @@
 
   const mobileDirectLinks = `
     <a class="block px-6 py-4 text-xs font-label uppercase tracking-widest text-stone-700 border-b border-stone-100 hover:text-primary transition-colors font-bold"
-       href="${base}index.html">← Inicio</a>
+       href="${base}index.html"><span class="material-symbols-outlined align-middle" style="font-size:16px">home</span> Inicio</a>
     <a class="block px-6 py-4 text-xs font-label uppercase tracking-widest text-stone-700 border-b border-stone-100 hover:text-primary transition-colors"
        href="${base}herramientas.html">Herramientas</a>
     <a class="block px-6 py-4 text-xs font-label uppercase tracking-widest text-stone-700 border-b border-stone-100 hover:text-primary transition-colors"
@@ -104,7 +98,7 @@
       <a href="tel:+34666152226"
          class="flex items-center justify-center gap-3 w-full py-4 bg-primary text-white text-xs font-label uppercase tracking-widest font-semibold">
         <span class="material-symbols-outlined" style="font-size:18px">phone</span>
-        666 152 226 — Llamar ahora
+        666 152 226 - Llamar ahora
       </a>
     </div>`;
 
