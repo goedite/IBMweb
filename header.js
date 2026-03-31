@@ -6,7 +6,7 @@
 (function () {
   // ── Detectar si estamos en un subdirectorio ──────────────────────────────
   const depth = (window.location.pathname.match(/\//g) || []).length - 1;
-  const base  = depth >= 2 ? '../' : '';   // raíz → ''  |  subdir → '../'
+  const base  = depth >= 1 ? '../' : '';   // raíz → ''  |  subdir → '../'
 
   // ── Página activa (para marcar el ítem del menú) ─────────────────────────
   const path = window.location.pathname;
