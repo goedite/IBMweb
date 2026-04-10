@@ -84,6 +84,18 @@
     font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
   }
   .hide-scrollbar::-webkit-scrollbar { display: none; }
+  /* Carousel blur overlay */
+  #hero-overlay {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.28s ease;
+    pointer-events: none;
+    z-index: 5;
+  }
+  #hero-overlay.blurring { opacity: 1; }
   body {
     min-height: max(884px, 100dvh);
   }
@@ -143,24 +155,35 @@
       <div class="relative aspect-[4/5] bg-surface-container overflow-hidden" id="hero-carousel">
 
         <!-- Slides -->
-        <div id="hero-slides" class="flex h-full transition-transform duration-700 ease-in-out" style="width:400%">
-          <div class="relative" style="width:25%">
+        <div id="hero-slides" class="flex h-full transition-transform duration-700 ease-in-out" style="width:600%">
+          <div class="relative" style="width:16.6667%">
             <img class="w-full h-full object-cover" src="img/proyectos/trabajo1.jpg" alt="Isla de cocina con encimera de cuarzo blanco"/>
             <span class="absolute bottom-4 left-4 bg-black/60 text-white text-[10px] font-label uppercase tracking-widest px-3 py-1.5">Isla de Cocina</span>
           </div>
-          <div class="relative" style="width:25%">
+          <div class="relative" style="width:16.6667%">
             <img class="w-full h-full object-cover" src="img/proyectos/trabajo2.jpg" alt="Meseta de baño en mármol con lavabo integrado"/>
             <span class="absolute bottom-4 left-4 bg-black/60 text-white text-[10px] font-label uppercase tracking-widest px-3 py-1.5">Meseta de Baño</span>
           </div>
-          <div class="relative" style="width:25%">
+          <div class="relative" style="width:16.6667%">
             <img class="w-full h-full object-cover" src="img/proyectos/trabajo3.jpg" alt="Escaleras de mármol con revestimiento de pared"/>
             <span class="absolute bottom-4 left-4 bg-black/60 text-white text-[10px] font-label uppercase tracking-widest px-3 py-1.5">Escaleras de Mármol</span>
           </div>
-          <div class="relative" style="width:25%">
+          <div class="relative" style="width:16.6667%">
             <img class="w-full h-full object-cover" src="img/proyectos/trabajo4.jpg" alt="Reforma integral de cocina antes y después"/>
             <span class="absolute bottom-4 left-4 bg-black/60 text-white text-[10px] font-label uppercase tracking-widest px-3 py-1.5">Reforma Integral</span>
           </div>
+          <div class="relative" style="width:16.6667%">
+            <img class="w-full h-full object-cover" src="img/proyectos/cimenea terminada blanca.jpg" alt="Chimenea terminada en mármol blanco"/>
+            <span class="absolute bottom-4 left-4 bg-black/60 text-white text-[10px] font-label uppercase tracking-widest px-3 py-1.5">Chimenea Blanca</span>
+          </div>
+          <div class="relative" style="width:16.6667%">
+            <img class="w-full h-full object-cover" src="img/proyectos/cocina cream vetado instalacion.jpg" alt="Instalación de cocina en crema vetado"/>
+            <span class="absolute bottom-4 left-4 bg-black/60 text-white text-[10px] font-label uppercase tracking-widest px-3 py-1.5">Cocina Cream Vetado</span>
+          </div>
         </div>
+
+        <!-- Blur overlay for transitions -->
+        <div id="hero-overlay"></div>
 
         <!-- Dots -->
         <div class="absolute bottom-10 right-4 flex gap-1.5" id="hero-dots">
@@ -168,6 +191,8 @@
           <button onclick="heroGo(1)" class="w-1.5 h-1.5 rounded-full bg-white transition-opacity" style="opacity:0.4"></button>
           <button onclick="heroGo(2)" class="w-1.5 h-1.5 rounded-full bg-white transition-opacity" style="opacity:0.4"></button>
           <button onclick="heroGo(3)" class="w-1.5 h-1.5 rounded-full bg-white transition-opacity" style="opacity:0.4"></button>
+          <button onclick="heroGo(4)" class="w-1.5 h-1.5 rounded-full bg-white transition-opacity" style="opacity:0.4"></button>
+          <button onclick="heroGo(5)" class="w-1.5 h-1.5 rounded-full bg-white transition-opacity" style="opacity:0.4"></button>
         </div>
       </div>
 
@@ -180,16 +205,52 @@
       <!-- Script carrusel -->
       <script>
         (function(){
-          var cur=0, total=4, auto;
-          function heroGo(n){
-            cur=n;
-            document.getElementById('hero-slides').style.transform='translateX(-'+(25*n)+'%)';
-            document.querySelectorAll('#hero-dots button').forEach(function(b,i){b.style.opacity=i===n?'1':'0.4';});
+          var REAL = 6, cur = 0, auto;
+          var slidesEl = document.getElementById('hero-slides');
+          var dotsEls  = document.querySelectorAll('#hero-dots button');
+          var overlay  = document.getElementById('hero-overlay');
+
+          /* --- clone first slide for seamless infinite loop --- */
+          slidesEl.appendChild(slidesEl.children[0].cloneNode(true));
+          var TOTAL = REAL + 1;
+          slidesEl.style.width = (TOTAL * 100) + '%';
+          Array.from(slidesEl.children).forEach(function(s){
+            s.style.width = (100 / TOTAL) + '%';
+          });
+
+          function syncDots(n) {
+            dotsEls.forEach(function(b, i){ b.style.opacity = i === (n % REAL) ? '1' : '0.4'; });
           }
-          function heroNext(){ heroGo((cur+1)%total); }
-          auto=setInterval(heroNext,4000);
-          document.getElementById('hero-carousel').addEventListener('click',function(){ heroNext(); clearInterval(auto); auto=setInterval(heroNext,4000); });
-          window.heroGo=heroGo;
+
+          function jumpTo(n, instant) {
+            if (instant) {
+              slidesEl.style.transition = 'none';
+              slidesEl.style.transform  = 'translateX(-' + (100 / TOTAL * n) + '%)';
+              slidesEl.offsetHeight; /* force reflow */
+              slidesEl.style.transition = '';
+              return;
+            }
+            if (overlay) overlay.classList.add('blurring');
+            slidesEl.style.transition = 'transform 910ms cubic-bezier(0.4,0,0.2,1)';
+            slidesEl.style.transform  = 'translateX(-' + (100 / TOTAL * n) + '%)';
+            syncDots(n);
+            setTimeout(function(){ if (overlay) overlay.classList.remove('blurring'); }, 280);
+            /* reached clone of slide 0 — silently jump back to real slide 0 */
+            if (n === REAL) {
+              setTimeout(function(){ jumpTo(0, true); cur = 0; }, 930);
+            }
+          }
+
+          function heroNext() {
+            cur = (cur >= REAL) ? 1 : cur + 1;
+            jumpTo(cur);
+          }
+
+          auto = setInterval(heroNext, 5200);
+          document.getElementById('hero-carousel').addEventListener('click', function(){
+            heroNext(); clearInterval(auto); auto = setInterval(heroNext, 5200);
+          });
+          window.heroGo = function(n){ cur = n; jumpTo(n); clearInterval(auto); auto = setInterval(heroNext, 5200); };
         })();
       </script>
     </div>
