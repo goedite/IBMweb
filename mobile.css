@@ -12,6 +12,11 @@
   -webkit-backdrop-filter: blur(4px);
 }
 
+/* ── Fotos siempre en COLOR (quitar filtro escala de grises) ── */
+.grayscale {
+  filter: grayscale(0%) !important;
+}
+
 /* Eliminar el mínimo de altura que forzaba scroll innecesario */
 body {
   min-height: 100dvh !important;
