@@ -4,6 +4,14 @@
    Compatible: iOS Safari 15+, Android Chrome 90+
    ============================================================ */
 
+/* ── Hero badge: transparencia global (40% opacidad) ───────── */
+/* El badge negro con "Presupuesto 24h" / "Fabricación propia"  */
+.hero-badge-abs {
+  background-color: rgba(29, 27, 22, 0.40) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
 /* Eliminar el mínimo de altura que forzaba scroll innecesario */
 body {
   min-height: 100dvh !important;
