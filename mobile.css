@@ -53,11 +53,15 @@ button.bg-primary {
   background-color: rgba(201, 169, 110, 0.75) !important;
   border-radius: 6px !important;
 }
-/* Botones outline (border-primary) también con radio */
+/* Botones outline y cualquier enlace con borde primario → radio */
 a.border-primary,
 button.border-primary,
 a[class*="border-2"][class*="primary"],
-button[class*="border-2"][class*="primary"] {
+button[class*="border-2"][class*="primary"],
+a[class*="border "][class*="primary"],
+a[class*="border-primary"],
+/* Header CTA "Pide Presupuesto" */
+header a.bg-primary {
   border-radius: 6px !important;
 }
 
