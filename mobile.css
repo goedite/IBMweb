@@ -12,39 +12,68 @@
   -webkit-backdrop-filter: blur(4px);
 }
 
-/* ── Hero badge desktop: tamaño −30%, posición −25% más abajo, fuente −20% ── */
+/* ── Hero badge desktop: tamaño −30%, posición fuera de la foto ── */
 @media (min-width: 768px) {
   .hero-badge-abs {
-    /* Mover 25% más abajo fuera de la foto: de -bottom-6 (−1.5rem) → −4.5rem */
-    bottom: -4.5rem !important;
-    /* Reducir padding 30%: de p-8 (2rem) → ~1.4rem */
-    padding: 1.4rem !important;
-    /* Reducir ancho máximo 30%: de max-w-xs (20rem) → ~14rem */
-    max-width: 14rem !important;
+    /* Desplazar hacia abajo: completamente fuera de la foto */
+    bottom: -9rem !important;
+    /* Desplazar a la izquierda (posición azul) */
+    left: -2.5rem !important;
+    /* Reducir padding 30% */
+    padding: 1.1rem !important;
+    /* Reducir ancho máximo → cuadrado más pequeño */
+    max-width: 11.5rem !important;
   }
-  /* Título del badge: de text-2xl (1.5rem) → 1.2rem (−20%) */
+  /* Título badge: text-2xl → 1.1rem (−20%) */
   .hero-badge-abs .text-2xl {
-    font-size: 1.2rem !important;
-    line-height: 1.25 !important;
+    font-size: 1.1rem !important;
+    line-height: 1.2 !important;
   }
-  /* Subtexto: de text-xs (0.75rem) → 0.6rem (−20%) */
+  /* Subtexto: text-xs → 0.58rem (−20%) */
   .hero-badge-abs .text-xs {
-    font-size: 0.6rem !important;
+    font-size: 0.58rem !important;
   }
-  /* Texto alternativo "Fabricación propia" (text-lg) */
+  /* Variante text-lg */
   .hero-badge-abs .text-lg {
-    font-size: 1rem !important;
+    font-size: 0.95rem !important;
   }
   .hero-badge-abs .text-sm {
-    font-size: 0.68rem !important;
+    font-size: 0.65rem !important;
   }
 }
-
 
 /* ── Fotos siempre en COLOR (quitar filtro escala de grises) ── */
 .grayscale {
   filter: grayscale(0%) !important;
 }
+
+/* ── Botones primarios: 25% transparencia + bordes curvados ── */
+a.bg-primary,
+button.bg-primary {
+  background-color: rgba(201, 169, 110, 0.75) !important;
+  border-radius: 6px !important;
+}
+/* Botones outline (border-primary) también con radio */
+a.border-primary,
+button.border-primary,
+a[class*="border-2"][class*="primary"],
+button[class*="border-2"][class*="primary"] {
+  border-radius: 6px !important;
+}
+
+/* ── Imágenes: border-radius suave (mismo aspecto que logo) ── */
+/* Contenedores de imagen con overflow-hidden */
+.hero-img-wrap,
+.relative.overflow-hidden,
+div[class*="aspect-"] {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+/* Imágenes de proyecto en grids y cards */
+section img:not([alt*="IBM"]):not([alt*="logo"]):not([src*="logo"]) {
+  border-radius: 8px;
+}
+
 
 /* Eliminar el mínimo de altura que forzaba scroll innecesario */
 body {
