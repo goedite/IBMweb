@@ -12,6 +12,35 @@
   -webkit-backdrop-filter: blur(4px);
 }
 
+/* ── Hero badge desktop: tamaño −30%, posición −25% más abajo, fuente −20% ── */
+@media (min-width: 768px) {
+  .hero-badge-abs {
+    /* Mover 25% más abajo fuera de la foto: de -bottom-6 (−1.5rem) → −4.5rem */
+    bottom: -4.5rem !important;
+    /* Reducir padding 30%: de p-8 (2rem) → ~1.4rem */
+    padding: 1.4rem !important;
+    /* Reducir ancho máximo 30%: de max-w-xs (20rem) → ~14rem */
+    max-width: 14rem !important;
+  }
+  /* Título del badge: de text-2xl (1.5rem) → 1.2rem (−20%) */
+  .hero-badge-abs .text-2xl {
+    font-size: 1.2rem !important;
+    line-height: 1.25 !important;
+  }
+  /* Subtexto: de text-xs (0.75rem) → 0.6rem (−20%) */
+  .hero-badge-abs .text-xs {
+    font-size: 0.6rem !important;
+  }
+  /* Texto alternativo "Fabricación propia" (text-lg) */
+  .hero-badge-abs .text-lg {
+    font-size: 1rem !important;
+  }
+  .hero-badge-abs .text-sm {
+    font-size: 0.68rem !important;
+  }
+}
+
+
 /* ── Fotos siempre en COLOR (quitar filtro escala de grises) ── */
 .grayscale {
   filter: grayscale(0%) !important;
