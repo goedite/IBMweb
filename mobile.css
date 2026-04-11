@@ -116,10 +116,23 @@ body {
   /* "Corte de mármol..." — OCULTO en móvil, se muestra copia debajo del carrusel */
   /* #hero-desc se oculta via hidden lg:block en el HTML */
 
-  /* Label "MÁRMOL · REFORMAS · COSTA BLANCA" — 40% más pequeño en móvil */
+  /* Label "MÁRMOL · REFORMAS · COSTA BLANCA" — centrado, +10% mayor */
   #hero-label {
-    font-size: 0.45rem !important;
+    font-size: 0.5rem !important;      /* era 0.45rem → +10% */
     letter-spacing: 0.12em !important;
+    text-align: center !important;
+    margin-bottom: 0.6rem !important;  /* era mb-6 (1.5rem) → −40% */
+  }
+
+  /* Hero section: padding superior −40% */
+  #hero-section {
+    padding-top: 0.9rem !important;    /* era pt-6 (1.5rem) → −40% */
+    gap: 1rem !important;              /* era gap-12 (3rem) → compacto */
+  }
+
+  /* H1: margen inferior −40% */
+  #hero-section h1 {
+    margin-bottom: 1rem !important;    /* era mb-8 (2rem) → −40% */
   }
 
 
