@@ -23,6 +23,8 @@
     padding: 1.1rem !important;
     /* Reducir ancho máximo → cuadrado más pequeño */
     max-width: 11.5rem !important;
+    /* Esquinas redondeadas */
+    border-radius: 10px !important;
   }
   /* Título badge: text-2xl → 1.1rem (−20%) */
   .hero-badge-abs .text-2xl {
