@@ -122,10 +122,6 @@ body {
     letter-spacing: 0.12em !important;
   }
 
-  /* Carrusel: aspecto 4/3 en móvil (menos alto → sube en pantalla) */
-  #hero-carousel {
-    aspect-ratio: 4 / 3 !important;
-  }
 
   /* ── Hero badge: sacar del flujo absoluto ─────────────── */
   /* El badge negro con "Presupuesto 24h" / "Fabricación propia" */
