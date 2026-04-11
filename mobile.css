@@ -113,6 +113,13 @@ body {
     line-height: 1.1 !important;
   }
 
+  /* "Corte de mármol, granito y porcelánico..." — texto más pequeño en móvil/tablet */
+  #hero-desc {
+    font-size: 0.875rem !important;  /* 14px en vez de 18px */
+    line-height: 1.55 !important;
+  }
+
+
   /* ── Hero badge: sacar del flujo absoluto ─────────────── */
   /* El badge negro con "Presupuesto 24h" / "Fabricación propia" */
   .hero-badge-abs {
