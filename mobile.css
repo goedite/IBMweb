@@ -146,6 +146,18 @@ body {
     margin-top: 1rem;
     max-width: 100%;
     width: 100%;
+    /* −25% tamaño + esquinas redondeadas en móvil */
+    padding: 1.1rem !important;        /* p-6 (1.5rem) × 0.75 */
+    border-radius: 10px !important;
+  }
+  /* Título badge móvil: text-2xl (1.5rem) → 1.125rem (−25%) */
+  .hero-badge-abs .text-2xl {
+    font-size: 1.125rem !important;
+    line-height: 1.3 !important;
+  }
+  /* Subtexto badge móvil: text-xs (0.75rem) → 0.56rem (−25%) */
+  .hero-badge-abs .text-xs {
+    font-size: 0.56rem !important;
   }
 
   /* El contenedor del hero con aspect-ratio necesita más espacio */
