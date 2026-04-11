@@ -271,58 +271,135 @@
     </div>
   </section>
 
-  <!-- ===== SERVICIOS (sección oscura) ===== -->
-  <section class="bg-inverse-surface text-inverse-on-surface py-24 px-8 lg:px-16">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row justify-between items-baseline border-b border-white/10 pb-12 mb-16">
-        <h2 class="text-4xl font-headline mb-4 md:mb-0">Nuestros Servicios</h2>
-        <span class="text-sm font-label uppercase tracking-widest text-primary">Lo que hacemos por ti</span>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+  <!-- ===== SERVICIOS — TICKER MARQUEE ===== -->
+  <section class="bg-inverse-surface text-inverse-on-surface py-8 md:py-10 overflow-hidden">
 
-        <!-- Bloque 1: Corte a medida -->
-        <div class="space-y-6">
-          <span class="text-primary text-4xl material-symbols-outlined">content_cut</span>
-          <h3 class="text-xl font-headline">Corte a Medida</h3>
-          <p class="text-sm font-light opacity-80 leading-relaxed">Cortamos mármol, granito y porcelánico a las medidas exactas de tu proyecto. Encimeras de cocina, mesetas de baño, peldaños, rodapiés y piezas especiales.</p>
-          <div class="pt-4 border-t border-white/10">
-            <p class="text-[10px] font-label uppercase tracking-tighter opacity-50">Sierra de puente profesional</p>
-          </div>
-        </div>
+    <!-- Cabecera compacta -->
+    <div class="flex justify-between items-center px-8 lg:px-16 mb-6 max-w-7xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-headline">Lo que fabricamos e instalamos</h2>
+      <span class="text-xs font-label uppercase tracking-widest text-primary hidden md:block">Gandía · Costa Blanca</span>
+    </div>
 
-        <!-- Bloque 2: Reformas de baños -->
-        <div class="space-y-6">
-          <span class="text-primary text-4xl material-symbols-outlined">shower</span>
-          <h3 class="text-xl font-headline">Reformas de Baños</h3>
-          <p class="text-sm font-light opacity-80 leading-relaxed">Reforma integral de tu baño: plato de ducha, alicatado, fontanería, electricidad y acabados. Todo coordinado por un solo equipo. Tu baño nuevo sin complicaciones.</p>
-          <div class="pt-4 border-t border-white/10">
-            <p class="text-[10px] font-label uppercase tracking-tighter opacity-50">Reforma llave en mano</p>
-          </div>
-        </div>
+    <!-- Ticker infinito -->
+    <div class="relative w-full" style="mask-image:linear-gradient(to right,transparent 0%,black 6%,black 94%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 6%,black 94%,transparent 100%);">
+      <div class="ibm-ticker-track flex items-center gap-0 whitespace-nowrap" style="width:max-content;">
 
-        <!-- Bloque 3: Reformas de cocinas -->
-        <div class="space-y-6">
-          <span class="text-primary text-4xl material-symbols-outlined">countertops</span>
-          <h3 class="text-xl font-headline">Reformas de Cocinas</h3>
-          <p class="text-sm font-light opacity-80 leading-relaxed">Encimera nueva, cambio de distribución, isla central... Fabricamos e instalamos la superficie y coordinamos el resto de la reforma para que no tengas que preocuparte de nada.</p>
-          <div class="pt-4 border-t border-white/10">
-            <p class="text-[10px] font-label uppercase tracking-tighter opacity-50">Fabricación + instalación propia</p>
-          </div>
-        </div>
+        <!-- Set 1 -->
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">content_cut</span>
+          <span>Corte a Medida</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">shower</span>
+          <span>Reformas de Baños</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">countertops</span>
+          <span>Encimeras de Cocina</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">stairs</span>
+          <span>Escaleras de Mármol</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">local_fire_department</span>
+          <span>Chimeneas Gabión</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">deck</span>
+          <span>Cocinas Exteriores</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">local_shipping</span>
+          <span>Medición Gratuita</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">diamond</span>
+          <span>Granito · Mármol · Silestone</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
 
-        <!-- Bloque 4: Medición y transporte -->
-        <div class="space-y-6">
-          <span class="text-primary text-4xl material-symbols-outlined">local_shipping</span>
-          <h3 class="text-xl font-headline">Medición y Transporte</h3>
-          <p class="text-sm font-light opacity-80 leading-relaxed">Vamos a tu obra, tomamos medidas y entregamos las piezas listas para instalar. Cobertura en Gandía, Denia, Jávea, Oliva, Benissa y toda la Costa Blanca.</p>
-          <div class="pt-4 border-t border-white/10">
-            <p class="text-[10px] font-label uppercase tracking-tighter opacity-50">Cobertura Costa Blanca completa</p>
-          </div>
-        </div>
-
+        <!-- Set 2 — clon para loop infinito -->
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">content_cut</span>
+          <span>Corte a Medida</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">shower</span>
+          <span>Reformas de Baños</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">countertops</span>
+          <span>Encimeras de Cocina</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">stairs</span>
+          <span>Escaleras de Mármol</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">local_fire_department</span>
+          <span>Chimeneas Gabión</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">deck</span>
+          <span>Cocinas Exteriores</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">local_shipping</span>
+          <span>Medición Gratuita</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
+        <span class="ibm-ticker-item">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px;vertical-align:middle">diamond</span>
+          <span>Granito · Mármol · Silestone</span>
+        </span>
+        <span class="ibm-ticker-sep">·</span>
       </div>
     </div>
+
+    <style>
+      .ibm-ticker-track {
+        animation: ibm-scroll 28s linear infinite;
+      }
+      .ibm-ticker-track:hover { animation-play-state: paused; }
+      @keyframes ibm-scroll {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .ibm-ticker-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 2rem;
+        font-family: 'Manrope', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.85);
+      }
+      .ibm-ticker-sep {
+        color: #C9A96E;
+        font-size: 1.2rem;
+        padding: 0 0.5rem;
+        opacity: 0.6;
+      }
+    </style>
   </section>
+
 
   <!-- ===== CIFRAS DE CONFIANZA ===== -->
   <section class="py-16 px-8 lg:px-16 bg-surface-container-low border-b border-outline-variant/30">
