@@ -1,5 +1,5 @@
 /**
- * IBM Company – Header compartido con menú hamburguesa
+ * IBM Company – Header compartido con menú hamburguesa + selector de idioma
  * Se incluye en todas las páginas. Detecta el nivel de ruta
  * para generar las URLs relativas correctas.
  */
@@ -16,91 +16,136 @@
   };
 
   // ── Helper para ítem de menú ─────────────────────────────────────────────
-  const li = (href, label) => {
+  const li = (href, label, i18nKey) => {
     const active = isActive(href)
       ? 'text-primary font-bold bg-stone-50'
       : 'text-stone-600 hover:bg-stone-50 hover:text-stone-900';
     return `<a class="block px-4 py-3 text-xs font-label uppercase tracking-widest transition-colors ${active}"
-               href="${base}${href}">${label}</a>`;
+               href="${base}${href}" data-i18n="${i18nKey}">${label}</a>`;
   };
 
   // ── Grupos de menú ───────────────────────────────────────────────────────
   const navGroups = [
     {
-      label: 'Encimeras',
+      label: 'Encimeras', key: 'nav.encimeras',
       items: [
-        ['encimera/cocinas.html', 'Cocinas'],
-        ['encimera/barra.html',   'Barra'],
-        ['encimera/onix.html',    'Ónix'],
-        ['encimera/fregadero.html','Fregadero'],
+        ['encimera/cocinas.html',  'Cocinas',   'encimera.cocinas'],
+        ['encimera/barra.html',    'Barra',     'encimera.barra'],
+        ['encimera/onix.html',     'Ónix',      'encimera.onix'],
+        ['encimera/fregadero.html','Fregadero', 'encimera.fregadero'],
       ]
     },
     {
-      label: 'Reformas',
+      label: 'Reformas', key: 'nav.reformas',
       items: [
-        ['reformas/banos.html',    'Baños'],
-        ['reformas/escaleras.html','Escaleras'],
-        ['reformas/fachada.html',  'Fachada'],
-        ['reformas/chimenea.html', 'Chimenea'],
+        ['reformas/banos.html',    'Baños',     'reformas.banos'],
+        ['reformas/escaleras.html','Escaleras', 'reformas.escaleras'],
+        ['reformas/fachada.html',  'Fachada',   'reformas.fachada'],
+        ['reformas/chimenea.html', 'Chimenea',  'reformas.chimenea'],
       ]
     },
     {
-      label: 'Exterior',
+      label: 'Exterior', key: 'nav.exterior',
       items: [
-        ['exterior/cocinas-exteriores.html','Cocinas Exteriores'],
-        ['exterior/chimeneas-gavion.html',  'Chimeneas Gabión'],
+        ['exterior/cocinas-exteriores.html','Cocinas Exteriores','exterior.cocinas'],
+        ['exterior/chimeneas-gavion.html',  'Chimeneas Gabión',  'exterior.chimeneas'],
       ]
     },
   ];
+
+  // ── Selector de idioma (desktop) ─────────────────────────────────────────
+  const desktopLangSelector = `
+    <div class="hidden md:flex items-center gap-0.5 border-l border-stone-200 pl-3 ml-1">
+      <button data-lang-btn="es" onclick="ibmSetLang('es')"
+        class="text-[10px] font-label uppercase tracking-widest px-1.5 py-1 transition-colors hover:text-primary cursor-pointer">ES</button>
+      <span class="text-stone-300 text-[10px]">|</span>
+      <button data-lang-btn="en" onclick="ibmSetLang('en')"
+        class="text-[10px] font-label uppercase tracking-widest px-1.5 py-1 transition-colors hover:text-primary cursor-pointer">EN</button>
+      <span class="text-stone-300 text-[10px]">|</span>
+      <button data-lang-btn="de" onclick="ibmSetLang('de')"
+        class="text-[10px] font-label uppercase tracking-widest px-1.5 py-1 transition-colors hover:text-primary cursor-pointer">DE</button>
+      <span class="text-stone-300 text-[10px]">|</span>
+      <button data-lang-btn="nl" onclick="ibmSetLang('nl')"
+        class="text-[10px] font-label uppercase tracking-widest px-1.5 py-1 transition-colors hover:text-primary cursor-pointer">NL</button>
+      <span class="text-stone-300 text-[10px]">|</span>
+      <button data-lang-btn="ru" onclick="ibmSetLang('ru')"
+        class="text-[10px] font-label uppercase tracking-widest px-1.5 py-1 transition-colors hover:text-primary cursor-pointer">RU</button>
+    </div>`;
 
   // ── Desktop nav ──────────────────────────────────────────────────────────
   const desktopDropdowns = navGroups.map(g => `
     <div class="relative group">
       <a class="text-xs uppercase tracking-widest font-label text-stone-600 hover:text-stone-900 transition-colors cursor-pointer pb-0.5 border-b border-transparent hover:border-amber-700/40"
-         href="#">${g.label}</a>
+         href="#">
+        <span data-i18n="${g.key}">${g.label}</span>
+      </a>
       <div class="absolute top-full left-0 pt-2 w-52 hidden group-hover:block z-50">
         <div class="bg-white shadow-xl border border-stone-100" style="border-radius:8px;overflow:hidden;">
-          ${g.items.map(([href, lbl]) => li(href, lbl)).join('')}
+          ${g.items.map(([href, lbl, key]) => li(href, lbl, key)).join('')}
         </div>
       </div>
     </div>`).join('');
 
   const desktopLinks = `
-    <a class="text-xs uppercase tracking-widest font-label text-stone-600 hover:text-stone-900 transition-colors" href="${base}herramientas.html">Herramientas</a>
-    <a class="text-xs uppercase tracking-widest font-label text-stone-600 hover:text-stone-900 transition-colors" href="${base}contacto.html">Contacto</a>
+    <a class="text-xs uppercase tracking-widest font-label text-stone-600 hover:text-stone-900 transition-colors"
+       href="${base}herramientas.html" data-i18n="nav.herramientas">Herramientas</a>
+    <a class="text-xs uppercase tracking-widest font-label text-stone-600 hover:text-stone-900 transition-colors"
+       href="${base}contacto.html" data-i18n="nav.contacto">Contacto</a>
     <a href="tel:+34666152226" class="hidden lg:flex items-center gap-2 text-xs font-label uppercase tracking-widest text-amber-700 font-bold">
-      <span class="material-symbols-outlined" style="font-size:16px">phone</span>666 152 226
+      <span class="material-symbols-outlined" style="font-size:16px">phone</span>
+      <span data-i18n="nav.llamar">666 152 226</span>
     </a>`;
 
-  // Mobile nav (acordeon) - grupos con acordeon
+  // ── Mobile nav (acordeón) ────────────────────────────────────────────────
   const mobileGroups = navGroups.map((g, i) => `
     <div class="border-b border-stone-100">
       <div class="flex items-stretch">
         <button onclick="ibmToggle(${i})"
           class="flex-1 flex justify-between items-center px-6 py-4 text-xs font-label uppercase tracking-widest text-stone-700 font-semibold text-left">
-          ${g.label}
+          <span data-i18n="${g.key}">${g.label}</span>
           <span id="ibm-chevron-${i}" class="material-symbols-outlined text-stone-400 transition-transform duration-200" style="font-size:18px">expand_more</span>
         </button>
       </div>
       <div id="ibm-sub-${i}" class="hidden bg-stone-50">
-        ${g.items.map(([href, lbl]) => `
+        ${g.items.map(([href, lbl, key]) => `
           <a class="block px-8 py-3 text-xs font-label uppercase tracking-widest text-stone-600 hover:text-primary transition-colors"
-             href="${base}${href}">${lbl}</a>`).join('')}
+             href="${base}${href}" data-i18n="${key}">${lbl}</a>`).join('')}
       </div>
     </div>`).join('');
 
   const mobileDirectLinks = `
     <a class="block px-6 py-4 text-xs font-label uppercase tracking-widest text-stone-700 border-b border-stone-100 hover:text-primary transition-colors font-bold"
-       href="${base}index.html"><span class="material-symbols-outlined align-middle" style="font-size:16px">home</span> Inicio</a>
+       href="${base}index.html">
+      <span class="material-symbols-outlined align-middle" style="font-size:16px">home</span>&nbsp;<span data-i18n="nav.inicio">Inicio</span>
+    </a>
     <a class="block px-6 py-4 text-xs font-label uppercase tracking-widest text-stone-700 border-b border-stone-100 hover:text-primary transition-colors"
-       href="${base}herramientas.html">Herramientas</a>
+       href="${base}herramientas.html" data-i18n="nav.herramientas">Herramientas</a>
     <a class="block px-6 py-4 text-xs font-label uppercase tracking-widest text-stone-700 border-b border-stone-100 hover:text-primary transition-colors"
-       href="${base}contacto.html">Contacto</a>
+       href="${base}contacto.html" data-i18n="nav.contacto">Contacto</a>
+    <div class="border-b border-stone-100 px-6 py-4 flex items-center gap-3">
+      <span class="material-symbols-outlined text-stone-400" style="font-size:16px">language</span>
+      <div class="flex items-center gap-1">
+        <button data-lang-btn="es" onclick="ibmSetLang('es')"
+          class="text-[11px] font-label uppercase tracking-widest px-2 py-1 transition-colors hover:text-primary cursor-pointer">ES</button>
+        <span class="text-stone-300">·</span>
+        <button data-lang-btn="en" onclick="ibmSetLang('en')"
+          class="text-[11px] font-label uppercase tracking-widest px-2 py-1 transition-colors hover:text-primary cursor-pointer">EN</button>
+        <span class="text-stone-300">·</span>
+        <button data-lang-btn="de" onclick="ibmSetLang('de')"
+          class="text-[11px] font-label uppercase tracking-widest px-2 py-1 transition-colors hover:text-primary cursor-pointer">DE</button>
+        <span class="text-stone-300">·</span>
+        <button data-lang-btn="nl" onclick="ibmSetLang('nl')"
+          class="text-[11px] font-label uppercase tracking-widest px-2 py-1 transition-colors hover:text-primary cursor-pointer">NL</button>
+        <span class="text-stone-300">·</span>
+        <button data-lang-btn="ru" onclick="ibmSetLang('ru')"
+          class="text-[11px] font-label uppercase tracking-widest px-2 py-1 transition-colors hover:text-primary cursor-pointer">RU</button>
+      </div>
+    </div>
     <div class="px-6 py-5">
       <a href="tel:+34666152226"
          class="flex items-center justify-center gap-3 w-full py-4 bg-primary text-white text-xs font-label uppercase tracking-widest font-semibold">
         <span class="material-symbols-outlined" style="font-size:18px">phone</span>
-        666 152 226 - Llamar ahora
+        <span data-i18n="nav.llamar_ahora">666 152 226 · Llamar ahora</span>
       </a>
     </div>`;
 
@@ -125,11 +170,13 @@
     ${desktopLinks}
   </nav>
 
+  <!-- Selector de idioma (desktop) -->
+  ${desktopLangSelector}
+
   <!-- Desktop CTA -->
   <a href="${base}contacto.html"
-     class="hidden md:block px-5 py-2.5 bg-primary text-white text-xs uppercase tracking-widest font-label hover:opacity-90 transition-opacity font-semibold">
-    Pide Presupuesto
-  </a>
+     class="hidden md:block px-5 py-2.5 bg-primary text-white text-xs uppercase tracking-widest font-label hover:opacity-90 transition-opacity font-semibold"
+     data-i18n="nav.cta">Pide Presupuesto</a>
 
   <!-- Hamburger button (mobile only) -->
   <button id="ibm-menu-btn" onclick="ibmMenuToggle()"
